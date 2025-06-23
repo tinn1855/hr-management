@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button';
 import NxWelcome from './nx-welcome';
 
 import { Route, Routes, Link } from 'react-router-dom';
@@ -20,6 +21,7 @@ export function App() {
           </li>
           <li>
             <Link to="/page-2">Page 2</Link>
+            <Button>Test</Button>
           </li>
         </ul>
       </div>

@@ -102,7 +102,7 @@ export function Employees() {
     },
   ];
   return (
-    <section className="p-5 w-full">
+    <section>
       <div className="flex justify-end w-full gap-2">
         <form method="POST" className="w-1/2">
           <div className="flex items-center gap-2">

@@ -7,7 +7,9 @@ export function TemplateDefault() {
     <SidebarProvider>
       <AppSidebar />
 
-      <Outlet></Outlet>
+      <div className="p-5 w-full">
+        <Outlet></Outlet>
+      </div>
     </SidebarProvider>
   );
 }

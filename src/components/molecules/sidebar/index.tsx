@@ -1,17 +1,11 @@
 import {
-  Calendar,
   Calendar1,
-  ChartNoAxesCombined,
-  ChevronDown,
   ChevronUp,
   DollarSign,
   FileChartColumnIncreasing,
   Hand,
   Home,
   Inbox,
-  Search,
-  Settings,
-  User,
   User2,
   Users,
 } from 'lucide-react';
@@ -31,7 +25,6 @@ import {
   useSidebar,
 } from '@/components/ui/sidebar';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { useState } from 'react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -54,32 +47,32 @@ const items = [
   },
   {
     title: 'Quản lý công việc',
-    url: 'job',
+    url: 'work-management',
     icon: Inbox,
   },
   {
     title: 'Quản lý phòng ban',
-    url: '#',
+    url: 'department',
     icon: Inbox,
   },
   {
     title: 'Quản lý lương',
-    url: '#',
+    url: 'payroll',
     icon: DollarSign,
   },
   {
     title: 'Chấm công',
-    url: '#',
+    url: 'attendance',
     icon: Hand,
   },
   {
     title: 'Nghỉ phép & Xin phép',
-    url: '#',
+    url: 'leave-request',
     icon: Calendar1,
   },
   {
     title: 'Báo cáo, thống kê',
-    url: '#',
+    url: 'analytics-report',
     icon: FileChartColumnIncreasing,
   },
 ];

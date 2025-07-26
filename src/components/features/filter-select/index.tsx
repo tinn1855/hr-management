@@ -9,17 +9,30 @@ import {
 interface FilterSelectProps {
   value: string;
   onChange: (value: string) => void;
+  filterType: string;
+  options: string[];
+  placeholder?: string;
 }
 
-export function FilterSelect({ value, onChange }: FilterSelectProps) {
+export function FilterSelect({
+  value,
+  onChange,
+  filterType,
+  options,
+  placeholder = 'Filter by',
+}: FilterSelectProps) {
   return (
     <Select value={value} onValueChange={onChange}>
       <SelectTrigger>
-        <SelectValue placeholder="Filter by" />
+        <SelectValue placeholder={placeholder} />
       </SelectTrigger>
       <SelectContent>
-        <SelectItem value="department">Department</SelectItem>
-        <SelectItem value="position">Position</SelectItem>
+        <SelectItem value="all">All {filterType}s</SelectItem>
+        {options.map((option) => (
+          <SelectItem key={option} value={option}>
+            {option}
+          </SelectItem>
+        ))}
       </SelectContent>
     </Select>
   );

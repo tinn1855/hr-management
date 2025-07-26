@@ -1,11 +1,15 @@
 import {
+  Bell,
   Calendar1,
   ChevronUp,
+  Clock,
   DollarSign,
   FileChartColumnIncreasing,
   Hand,
   Home,
   Inbox,
+  LogOut,
+  Settings,
   User2,
   Users,
 } from 'lucide-react';
@@ -32,6 +36,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Link } from 'react-router-dom';
+import { useAuthContext } from '@/contexts/auth-context';
 
 // Menu items.
 const items = [
@@ -71,14 +76,30 @@ const items = [
     icon: Calendar1,
   },
   {
+    title: 'Phân ca làm việc',
+    url: 'work-schedule',
+    icon: Clock,
+  },
+  {
+    title: 'Thông báo nội bộ',
+    url: 'notifications',
+    icon: Bell,
+  },
+  {
     title: 'Báo cáo, thống kê',
     url: 'analytics-report',
     icon: FileChartColumnIncreasing,
+  },
+  {
+    title: 'Cài đặt hệ thống',
+    url: 'settings',
+    icon: Settings,
   },
 ];
 
 export function AppSidebar() {
   const { open } = useSidebar();
+  const { user, logout } = useAuthContext();
 
   return (
     <Sidebar collapsible="icon">
@@ -88,9 +109,16 @@ export function AppSidebar() {
             <div className={`${open ? 'flex gap-2 items-center' : 'hidden'}`}>
               <Avatar>
                 <AvatarImage src="https://github.com/shadcn.png" />
-                <AvatarFallback>CN</AvatarFallback>
+                <AvatarFallback>
+                  {user?.name.charAt(0).toUpperCase() || 'U'}
+                </AvatarFallback>
               </Avatar>
-              <h3 className="font-medium">Admin</h3>
+              <div>
+                <h3 className="font-medium">{user?.name || 'User'}</h3>
+                <p className="text-xs text-muted-foreground">
+                  {user?.role || 'Employee'}
+                </p>
+              </div>
             </div>
             <SidebarTrigger />
           </SidebarMenuItem>
@@ -122,7 +150,7 @@ export function AppSidebar() {
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <SidebarMenuButton>
-                  <User2 /> tinn1855@gmail.com
+                  <User2 /> {user?.email || 'user@example.com'}
                   <ChevronUp className="ml-auto" />
                 </SidebarMenuButton>
               </DropdownMenuTrigger>
@@ -130,8 +158,15 @@ export function AppSidebar() {
                 side="top"
                 className="w-[--radix-popper-anchor-width]"
               >
-                <DropdownMenuItem>
-                  <span>Log out</span>
+                <DropdownMenuItem asChild>
+                  <Link to="/profile" className="w-full">
+                    <User2 className="mr-2 h-4 w-4" />
+                    <span>Hồ sơ cá nhân</span>
+                  </Link>
+                </DropdownMenuItem>
+                <DropdownMenuItem onClick={logout}>
+                  <LogOut className="mr-2 h-4 w-4" />
+                  <span>Đăng xuất</span>
                 </DropdownMenuItem>
               </DropdownMenuContent>
             </DropdownMenu>

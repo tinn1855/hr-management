@@ -1,17 +1,19 @@
 import { useState, useMemo } from 'react';
 import { SimpleDataManagement } from '@/components/templates';
 import { Edit, Trash2, Users, UserCheck, UserX } from 'lucide-react';
-import { mockEmployees, getUniqueDepartments, getEmployeeStats, type Employee } from '@/data/mock';
+import {
+  mockEmployees,
+  getUniqueDepartments,
+  getEmployeeStats,
+  type Employee,
+} from '@/data/mock';
 
 export function EmployeesPage() {
   const [searchTerm, setSearchTerm] = useState('');
   const [filterDepartment, setFilterDepartment] = useState('all');
 
   // Get unique departments for filter
-  const departments = useMemo(() => 
-    getUniqueDepartments(mockEmployees), 
-    []
-  );
+  const departments = useMemo(() => getUniqueDepartments(mockEmployees), []);
 
   // Filter employees based on search and department
   const filteredEmployees = useMemo(() => {
